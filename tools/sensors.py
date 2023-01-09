@@ -2,6 +2,7 @@ import pygame
 import numpy as np
 import time
 import carla
+from tools.constants import COLOR_BLACK
 
 class CustomTimer:
     def __init__(self):
@@ -135,11 +136,15 @@ class SensorManager:
             radar.listen(self.save_radar_image)
 
             return radar
+
+        if sensor_type == 'None':
+            return None
         
         
         else:
             return None
 
+        
     def get_sensor(self):
         return self.sensor
 
@@ -243,6 +248,13 @@ class SensorManager:
         if self.surface is not None:
             offset = self.display_man.get_display_offset(self.display_pos)
             self.display_man.display.blit(self.surface, offset)
+        else:
+            self.surface = pygame.Surface(self.display_man.get_display_size())
+            self.surface.fill(COLOR_BLACK)
+
+            offset = self.display_man.get_display_offset(self.display_pos)
+            self.display_man.display.blit(self.surface, offset)
+
 
     def destroy(self):
         self.sensor.destroy()

@@ -340,6 +340,11 @@ def run_carla_node(args, client):
         # Map Manager
         MapManager(world, display_manager, vehicle, display_pos=[0,3])
 
+
+        SensorManager(world, display_manager, 'None', None, None, None, display_pos=[1, 0])  # To add black area.
+        SensorManager(world, display_manager, 'None', None, None, None, display_pos=[1, 2])  # To add black area.
+                      
+
         # Then, SensorManager can be used to spawn RGBCamera, LiDARs and SemanticLiDARs as needed
         # and assign each of them to a grid position, 
         SensorManager(world, display_manager, 'RGBCamera', carla.Transform(carla.Location(x=0, z=2.4), carla.Rotation(yaw=-90)), 
